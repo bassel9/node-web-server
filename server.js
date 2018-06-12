@@ -2,6 +2,8 @@ const express = require('express');
 
 let app = express();
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', (request, response)=> {
   //response.send('<h2>Hello Express!');
   response.send({
@@ -24,4 +26,7 @@ app.get('/bad', (req, res)=> {
 });
 
 //bind the app to a port on our machine
-app.listen(3000);
+//second argument of listen is optional
+app.listen(3000, () => {
+  console.log('Server is up on port 3000');
+});
