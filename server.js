@@ -8,6 +8,17 @@ app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
 
+app.use((req, res, next) => {
+  var now = new Date().toString();
+
+  console.log(`${now}: ${req.method} ${req.url}`);
+  //any async task will be executed until
+  //you cal next, if you don't call it,
+  //the page will never load since the routes
+  //are async
+  next();
+});
+
 hbs.registerHelper('getCurrentYear', () => {
   return new Date().getFullYear();
 });
