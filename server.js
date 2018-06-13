@@ -8,18 +8,18 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (request, response)=> {
-  //response.send('<h2>Hello Express!');
-  response.send({
-    name: 'Bassel',
-    likes: [
-      'Swimming',
-      'Drifting'
-    ]
+  response.render('home.hbs', {
+    pageTitle: 'Home Page',
+    currentYear: new Date().getFullYear(),
+    welcomeMessage: 'Welcome to my website',
   })
 });
 
 app.get('/about', (req, res)=>{
-  res.render('about.hbs');
+  res.render('about.hbs', {
+    pageTitle: 'About Page',
+    currentYear: new Date().getFullYear()
+  });
 });
 
 app.get('/bad', (req, res)=> {
